@@ -49,20 +49,27 @@ class Editor
             ArrayList<Integer> vals=new ArrayList<Integer>(1);
             System.out.println("Height: "+h);
             System.out.println("Width: "+w);
+            int maxval=0;
             int maxsize=h*w*3;System.out.println("maxsize: "+maxsize);
             while (vals.size()!=maxsize)
             {
-
+                    
                     String line=br.readLine();
                    String[] parts=line.split(" ",-1);
                    for (int j=0;j<parts.length;j++)
                     {
-
+                
                         try
-                        {
+                        {   
+                            if(maxval==0)
+                            {
+                                maxval=Integer.parseInt(parts[j]);
+                                j++;
+                            }
                             vals.add(Integer.parseInt(parts[j]));
                         }
                         catch(NumberFormatException e){}
+                        catch (ArrayIndexOutOfBoundsException e2){}
                     }
             }
              // create an image
@@ -84,31 +91,27 @@ class Editor
                 }
             }
             Image original=new Image(pixels,h,w);
-            save(original,outfile);
-            /*
+
+            
             if (args[i+2].equals("grayscale"))
             {
-
+                Image newimage=original.Grayscale();
+                save(newimage,outfile);
             }
             else if (args[i+2].equals("invert"))
             {
-
+                Image newimage=original.Invert();
+                save(newimage,outfile);
             }
             else if (args[i+2].equals("emboss"))
             {
-
+                Image newimage=original.Emboss();
+                save(newimage,outfile);
             }
             else if (args[i+2].equals("motionblur"))
             {
                 int blurlength=Integer.parseInt(args[i+3]);
             }
-
-
-            String st=br.readLine();
-            //System.out.println(st);
-            writer.write(st);
-            writer.close();
-*/
         }
     }
 
@@ -124,4 +127,5 @@ System.out.println("Done");
         writer.close();
 
     }
+    
 }

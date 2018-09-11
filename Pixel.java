@@ -23,5 +23,25 @@ class Pixel{
         sb.append("\n");
         return sb.toString();
     }
-
+    public Pixel pInvert()
+    {
+        int R=255-Red;
+        int G=255-Green;
+        int B=255-Blue;
+        Pixel p=new Pixel(R,G,B);
+        return p;
+    }
+    public Pixel Avg()
+    {
+        int avg=Red+Green+Blue;
+        avg=avg/3;
+        Pixel p=new Pixel(avg,avg,avg);
+        return p;
+    }
+    public int getRed()
+    { return Red;}
+    public int getGreen()
+    { return Green;}
+    public int getBlue()
+    { return Blue;}
 }

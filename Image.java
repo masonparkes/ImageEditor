@@ -12,12 +12,12 @@ class Image
     }    
     public String toString()
     {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb=new StringBuilder(width+" "+height+"\n");
         for(int m=0;m<height;m++)
         {
             for(int n=0;n<width;n++)
             {
-                sb.append(pixels[m][n].toString());
+                sb.append(pixels[n][m].toString());
             }
         }
         return sb.toString();

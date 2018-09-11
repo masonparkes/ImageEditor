@@ -26,16 +26,20 @@ class Editor
             while (h==0&&w==0)
             {
                 String st=br.readLine();
-                System.out.println(st);
+
                 String[] words=st.split(" ",8);
+                if(words[0].equals("#"))
+                {
+                    Arrays.fill(words,null);
+                }
                 for (int j=0;j<words.length;j++)
                 {
-                    System.out.println(words[j]);
+
                     try
                     {
                         w=Integer.parseInt(words[j]);
                         h=Integer.parseInt(words[j+1]);
-                        //break;
+                        break;
                     }
                     catch (NumberFormatException e) {}
                     catch (ArrayIndexOutOfBoundsException e2){}
@@ -53,7 +57,7 @@ class Editor
                    String[] parts=line.split(" ",-1);
                    for (int j=0;j<parts.length;j++)
                     {
-                    System.out.println(parts[j]);
+
                         try
                         {
                             vals.add(Integer.parseInt(parts[j]));
@@ -110,11 +114,14 @@ class Editor
 
     public static void save(Image im,String filename) throws Exception
     {
+
 System.out.println("Saving image to file: "+filename);
         BufferedWriter writer= new BufferedWriter(new FileWriter(filename));
         writer.write("P3");
         writer.newLine();
         writer.write(im.toString());
-        System.out.println(im.toString());
+System.out.println("Done");
+        writer.close();
+
     }
 }

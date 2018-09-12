@@ -78,4 +78,49 @@ class Image
         }
         return new Image(newpixels,height,width);   
      }
+    public Image MotionBlur(int toblur)
+    {
+        Pixel[][] newpixels=new Pixel[width][height];
+        for(int m=height-1;m>=0;m--)
+        {
+            for(int n=width-1;n>=0;n--)
+            {
+                if(n+toblur<width)//then we don't have to worry about the right edge
+                {
+                    int redtotal=0;
+                    int bluetotal=0;
+                    int greentotal=0;
+                    for(int i=n;i<n+toblur;i++)
+                    {
+                        redtotal+=pixels[i][m].getRed();
+                        bluetotal+=pixels[i][m].getBlue();
+                        greentotal+=pixels[i][m].getGreen();
+                    }
+                    int redavg=redtotal/(toblur);
+                    int blueavg=bluetotal/(toblur);
+                    int greenavg=greentotal/(toblur);
+                    newpixels[n][m]=new Pixel(redavg,greenavg,blueavg);
+                 }
+                 else
+                 {
+                    int redtotal=0;
+                    int bluetotal=0;
+                    int greentotal=0;
+                    for(int i=n-toblur;i<width;i++)
+                    {
+                       redtotal+=pixels[i][m].getRed();
+                       bluetotal+=pixels[i][m].getBlue();
+                       greentotal+=pixels[i][m].getGreen();
+                    }
+                    int redavg=redtotal/(width-n);
+                    int blueavg=bluetotal/(width-n);
+                    int greenavg=greentotal/(width-n);
+                    newpixels[n][m]=new Pixel(redavg,greenavg,blueavg);
+                 }
+            }
+                
+        }
+    
+        return new Image(newpixels,height,width);
+    }
 }

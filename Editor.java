@@ -48,10 +48,10 @@ class Editor
             }
             //Get the pixels
             ArrayList<Integer> vals=new ArrayList<Integer>(1);
-            System.out.println("Height: "+h);
-            System.out.println("Width: "+w);
+
+
             int maxval=0;
-            int maxsize=h*w*3;System.out.println("maxsize: "+maxsize);
+            int maxsize=h*w*3;
             while (vals.size()!=maxsize)
             {
                     
@@ -75,9 +75,9 @@ class Editor
             }
              // create an image
             //Image img=new Image(h,w,pixels);  
-            System.out.print("You collected: ");
-            System.out.print(vals.size());
-            System.out.println(" values");
+
+
+
             
             Pixel[][] pixels=new Pixel[w][h];
             int k=0;
@@ -125,12 +125,12 @@ class Editor
     public static void save(Image im,String filename) throws Exception
     {
 
-System.out.println("Saving image to file: "+filename);
+
         BufferedWriter writer= new BufferedWriter(new FileWriter(filename));
         writer.write("P3");
         writer.newLine();
         writer.write(im.toString());
-System.out.println("Done");
+
         writer.close();
 
     }
